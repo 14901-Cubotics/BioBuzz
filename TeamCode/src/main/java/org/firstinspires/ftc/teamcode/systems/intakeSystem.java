@@ -28,17 +28,28 @@ public class intakeSystem {
     }
 
     // method to set direction
-    public void reverseIntakeDirection(){
-
+    public void reverseIntakeDirection(boolean reverse){
+        if (reverse){
+            intakeMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+            leftIntakeServo.setDirection(CRServo.Direction.FORWARD);
+            rightIntakeServo.setDirection(CRServo.Direction.REVERSE);
+            telemetry.addData("Intake Direction:","Reversed");
+        } else{
+            intakeMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+            leftIntakeServo.setDirection(CRServo.Direction.REVERSE);
+            rightIntakeServo.setDirection(CRServo.Direction.FORWARD);
+            telemetry.addData("Intake Direction:","Forward");
+        }
     }
 
     // method to run intake
-
     public void runIntake(double intakeSpeed){
         intakeMotor.setPower(intakeSpeed);
         leftIntakeServo.setPower(intakeSpeed);
         rightIntakeServo.setPower(intakeSpeed);
         telemetry.addData("Intake Speed: ", intakeSpeed * 100);
     }
+
+
 
 }
