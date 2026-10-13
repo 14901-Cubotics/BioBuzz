@@ -43,7 +43,7 @@ public class driveSystem {
             configurePinpoint();
         }
 
-        telemetry.addData("Mechanium Drive Initialized","✅");
+//        telemetry.addData("Mechanium Drive Initialized","✅");
 
     }
 
