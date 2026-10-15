@@ -87,17 +87,26 @@ public class TeleOpBioBuzz extends OpMode {
             intakeSystem.init(hardwareMap, this.telemetry);
             deliverySystem.init(hardwareMap, this.telemetry);
             telemetry.addData("Status", "Robot Initialized 🤖");
+            telemetry.speak("Gamepad 1: left stick = drive, right stick = turn, right trigger = intake, A button = reverse intake");
+            telemetry.speak("Gamepad 2: left trigger = flywheel speed, B button = shoot");
             telemetry.update();
     }
 
     @Override
     public void loop() {
+        //gamepad 1 is drive/intake, gamepad2 is shoot
         driveSystem.driveRobot(gamepad1.left_stick_y, gamepad1.left_stick_y, gamepad1.right_stick_y);
-        intakeSystem.runIntake(gamepad2.right_trigger);
-        if (gamepad2.a) {
+        intakeSystem.runIntake(gamepad1.right_trigger);
+        if (gamepad1.a) {
             intakeReverse = !intakeReverse;
             intakeSystem.reverseIntakeDirection(intakeReverse);
         }
-
+        //left trigger sets flywheel speed
+        if (gamepad2.left_trigger){
+            deliverySystem.setFlywheelSpeed(gamepad2.left_trigger);
+        }
+        if (gamepad2.b){
+            deliverySystem.feedServo(gamepad2.b);
+        }
     }
 }
