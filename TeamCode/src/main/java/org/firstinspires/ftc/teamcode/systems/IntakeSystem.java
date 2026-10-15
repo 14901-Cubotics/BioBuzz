@@ -29,12 +29,12 @@ public class IntakeSystem {
     // method to set direction
     public void reverseIntakeDirection(boolean reverse){
         if (reverse){
-            intakeMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+            intakeMotor.setDirection(DcMotor.Direction.FORWARD);
             leftIntakeServo.setDirection(CRServo.Direction.FORWARD);
             rightIntakeServo.setDirection(CRServo.Direction.REVERSE);
             telemetry.addData("Intake Direction:","Reversed");
         } else{
-            intakeMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+            intakeMotor.setDirection(DcMotor.Direction.REVERSE);
             leftIntakeServo.setDirection(CRServo.Direction.REVERSE);
             rightIntakeServo.setDirection(CRServo.Direction.FORWARD);
             telemetry.addData("Intake Direction:","Forward");
