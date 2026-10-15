@@ -79,6 +79,8 @@ public class TeleOpBioBuzz extends OpMode {
     private IntakeSystem intakeSystem = new IntakeSystem();
     private DeliverySystem deliverySystem = new DeliverySystem();
 
+    private boolean intakeReverse = false;
+
     @Override
     public void init() {
             driveSystem.init(hardwareMap, this.telemetry, false);
@@ -91,9 +93,10 @@ public class TeleOpBioBuzz extends OpMode {
     @Override
     public void loop() {
         driveSystem.driveRobot(gamepad1.left_stick_y, gamepad1.left_stick_y, gamepad1.right_stick_y);
-        intakeSystem.runIntake((gamepad2.left_trigger-gamepad2.right_trigger));
+        intakeSystem.runIntake(gamepad2.right_trigger);
         if (gamepad2.a) {
-            intakeSystem.reverseIntakeDirection();
+            intakeReverse = !intakeReverse;
+            intakeSystem.reverseIntakeDirection(intakeReverse);
         }
 
     }
