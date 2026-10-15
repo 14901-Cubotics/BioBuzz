@@ -2,12 +2,11 @@ package org.firstinspires.ftc.teamcode.systems;
 
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
-public class intakeSystem {
+public class IntakeSystem {
     private DcMotor intakeMotor;
     private CRServo leftIntakeServo;
     private CRServo rightIntakeServo;

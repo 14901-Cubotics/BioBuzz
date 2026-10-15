@@ -1,4 +1,4 @@
 package org.firstinspires.ftc.teamcode.systems;
 
-public class visionSystem {
+public class VisionSystem {
 }
