@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.systems;
 
+import static java.lang.Thread.sleep;
+
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -10,7 +12,8 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 public class DeliverySystem {
     private DcMotor shootMotor;
     private CRServo feeder;
-    private double feedSpeed;
+    private double feedSpeed = 0;
+    private double maxFeedSpeed = 1.0;
     private Telemetry telemetry;
     public void init(HardwareMap hMap, Telemetry telemetry){
         shootMotor = hMap.get(DcMotor.class, "flywheel");
@@ -25,12 +28,8 @@ public class DeliverySystem {
     }
 
     //feed balls when button pressed
-    public void feedServo(boolean feed){
-        if (feed == true){
-            feeder.setPower(feedSpeed);
-        } else {
-            feeder.setPower(0);
-        }
+    public void feedServo(){
+        feeder.setPower(maxFeedSpeed);
     }
 
 

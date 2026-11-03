@@ -18,7 +18,7 @@ public class IntakeSystem {
         leftIntakeServo = hMap.get(CRServo.class, "leftintake");
         rightIntakeServo = hMap.get(CRServo.class, "rightintake");
 
-        intakeMotor.setDirection(DcMotor.Direction.REVERSE);
+        intakeMotor.setDirection(DcMotor.Direction.FORWARD);
         leftIntakeServo.setDirection(CRServo.Direction.FORWARD);
         rightIntakeServo.setDirection(CRServo.Direction.FORWARD);
         this.telemetry = telemetry;
