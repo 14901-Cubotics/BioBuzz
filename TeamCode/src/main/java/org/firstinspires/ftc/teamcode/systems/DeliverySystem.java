@@ -13,9 +13,9 @@ public class DeliverySystem {
     private double feedSpeed;
     private Telemetry telemetry;
     public void init(HardwareMap hMap, Telemetry telemetry){
-        shootMotor = hMap.get(DcMotor.class, "Flywheel");
+        shootMotor = hMap.get(DcMotor.class, "flywheel");
         shootMotor.setDirection(DcMotorSimple.Direction.FORWARD);
-        feeder = hMap.get(CRServo.class, "Feed Servo");
+        feeder = hMap.get(CRServo.class, "feedservo");
         this.telemetry = telemetry;
         telemetry.addData("Delivery System Initialized","☄✅");
     }
