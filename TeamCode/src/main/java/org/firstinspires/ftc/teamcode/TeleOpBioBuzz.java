@@ -102,7 +102,7 @@ public class TeleOpBioBuzz extends OpMode {
             intakeSystem.reverseIntakeDirection(intakeReverse);
         }
         //left trigger sets flywheel speed
-        if (gamepad2.left_trigger){
+        if (gamepad2.left_trigger > 0){
             deliverySystem.setFlywheelSpeed(gamepad2.left_trigger);
         }
         if (gamepad2.b){
