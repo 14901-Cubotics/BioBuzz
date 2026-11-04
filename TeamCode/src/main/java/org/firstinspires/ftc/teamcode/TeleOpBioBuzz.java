@@ -93,6 +93,11 @@ public class TeleOpBioBuzz extends OpMode {
     }
 
     @Override
+    public void start(){
+        deliverySystem.setFlywheelSpeed(0.5);
+    }
+
+    @Override
     public void loop() {
         //gamepad 1 is drive/intake, gamepad2 is shoot
         driveSystem.driveRobot(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_y);
@@ -106,8 +111,6 @@ public class TeleOpBioBuzz extends OpMode {
             deliverySystem.setFlywheelSpeed(gamepad2.left_trigger);
         }
         if (gamepad2.bWasPressed()){
-            deliverySystem.feedServo();
-        } else if (gamepad2.bWasReleased()){
             deliverySystem.feedServo();
         }
     }
