@@ -17,6 +17,9 @@ public class DriveSystem {
     private DcMotor rightRearDrive;
     private GoBildaPinpointDriver pinpoint;
 
+    private double speedMod = 0.75;
+
+
     // Set up telemetry and other variables.
     private Telemetry telemetry;
     private double xOffset = 0;
@@ -108,10 +111,10 @@ public class DriveSystem {
         }
 
         // Send powers to the wheels.
-        leftFrontDrive.setPower(frontLeftPower);
-        rightFrontDrive.setPower(frontRightPower);
-        leftRearDrive.setPower(backLeftPower);
-        rightRearDrive.setPower(backRightPower);
+        leftFrontDrive.setPower(frontLeftPower * speedMod);
+        rightFrontDrive.setPower(frontRightPower * speedMod);
+        leftRearDrive.setPower(backLeftPower * speedMod);
+        rightRearDrive.setPower(backRightPower * speedMod);
     }
 
     public void driveFieldRelative (double move, double strafe, double turn) {
