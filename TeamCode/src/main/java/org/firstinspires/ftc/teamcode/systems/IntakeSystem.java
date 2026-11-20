@@ -10,8 +10,12 @@ public class IntakeSystem {
     private DcMotor intakeMotor;
     private CRServo leftIntakeServo;
     private CRServo rightIntakeServo;
-
     private Telemetry telemetry;
+    private enum IntakeDirection {
+            INTAKE_FORWARD,
+            INTAKE_REVERSE
+    }
+    private IntakeDirection currentIntakeDirection = IntakeDirection.INTAKE_FORWARD;
 
     public void init(HardwareMap hMap, Telemetry telemetry){
         intakeMotor = hMap.get(DcMotor.class,"intake");
@@ -29,15 +33,24 @@ public class IntakeSystem {
     // method to set direction
     public void reverseIntakeDirection(boolean reverse){
         if (reverse){
-            intakeMotor.setDirection(DcMotor.Direction.FORWARD);
-            leftIntakeServo.setDirection(CRServo.Direction.FORWARD);
-            rightIntakeServo.setDirection(CRServo.Direction.REVERSE);
-            telemetry.addData("Intake Direction:","Reversed");
-        } else{
-            intakeMotor.setDirection(DcMotor.Direction.REVERSE);
-            leftIntakeServo.setDirection(CRServo.Direction.REVERSE);
-            rightIntakeServo.setDirection(CRServo.Direction.FORWARD);
-            telemetry.addData("Intake Direction:","Forward");
+            switch (currentIntakeDirection){
+                case INTAKE_FORWARD:
+                    intakeMotor.setDirection(DcMotor.Direction.FORWARD);
+                    leftIntakeServo.setDirection(CRServo.Direction.FORWARD);
+                    rightIntakeServo.setDirection(CRServo.Direction.REVERSE);
+                    telemetry.addData("Intake Direction:","Reversed");
+                    currentIntakeDirection = IntakeDirection.INTAKE_REVERSE;
+                    break;
+                case INTAKE_REVERSE:
+                    intakeMotor.setDirection(DcMotor.Direction.REVERSE);
+                    leftIntakeServo.setDirection(CRServo.Direction.REVERSE);
+                    rightIntakeServo.setDirection(CRServo.Direction.FORWARD);
+                    telemetry.addData("Intake Direction:","Forward");
+                    currentIntakeDirection = IntakeDirection.INTAKE_FORWARD;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 

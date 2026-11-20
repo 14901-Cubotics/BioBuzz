@@ -94,7 +94,7 @@ public class TeleOpBioBuzz extends OpMode {
 
     @Override
     public void start(){
-        deliverySystem.setFlywheelSpeed(0.25);
+        //deliverySystem.setFlywheelSpeed(0.25);
     }
 
     @Override
@@ -102,6 +102,8 @@ public class TeleOpBioBuzz extends OpMode {
         //gamepad 1 is drive/intake, gamepad2 is shoot
         driveSystem.driveRobot(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
         intakeSystem.runIntake(gamepad1.right_trigger);
+        // reconstruct these methods to just accept the input as an argument, then act accordingly.
+        // This should allow using the edge detection methods.
         if (gamepad1.a) {
             intakeReverse = !intakeReverse;
             intakeSystem.reverseIntakeDirection(intakeReverse);
@@ -114,5 +116,14 @@ public class TeleOpBioBuzz extends OpMode {
             telemetry.addLine("Gamepad 2 B Pressed");
             deliverySystem.feedServo();
         }
+        if (gamepad2.dpadDownWasPressed()){
+            deliverySystem.lowerFlywheelVelocity();
+        }
+
+        if (gamepad2.dpadUpWasPressed()){
+            deliverySystem.raiseFlywheelVelocity();
+        }
+
+        telemetry.addData("flywheel velocity:",deliverySystem.getFlywheelVelocity());
     }
 }
